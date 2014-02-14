@@ -1,0 +1,61 @@
+string s = "baasangac";
+string p = "asang";
+float N = s.length;
+float M = p.length;
+d[0]=0;
+float i = 1;
+float j = 0;
+float res = 0;
+float currj = 0;
+for (i = 1; i <M; i++)
+{
+    while(j > 0 )
+    {
+        if (p[j]!=p[i])
+        {
+            j = d[j-1];
+        }
+        else
+        {
+            currj = j;
+            j = 0;
+        }
+    }
+    j = currj;
+    if(p[j]==p[i])
+    {
+        j++;
+    };
+    d[i]=j;
+}
+
+j= 0;
+
+for(i = 0; i < N; i++)
+{
+    while ( j > 0)
+    {
+        if(p[j]!=s[i])
+        {
+            j = d[j-1];
+        }
+        else
+        {
+            currj = j;
+            j = 0;
+        }
+    }
+    j = currj;
+
+    if(p[j] == s[i])
+    {
+        j++;
+    };
+
+    if (j==M)
+    {
+        res = i-j+1;
+        i = N;
+    };
+}
+print(res+1);
