@@ -13,6 +13,7 @@ namespace EquationsSolver
         public int start;
         public Nodes.Statement currStatement;
         private Nodes.Program currProgram;
+        public bool isEnd = false;
 
         public Debugger(Nodes.Program program)
         {
@@ -24,17 +25,26 @@ namespace EquationsSolver
         {
             StartCoord = currStatement.Start;
             EndCoord = currStatement.End;
-            start = StartCoord.X;
-            length = EndCoord.X - StartCoord.X;
+            start = length + start;
+            length = EndCoord.X - StartCoord.X + 2;
 
-            Console.WriteLine(EndCoord.X);
-            Console.WriteLine(EndCoord.X);
+            //Console.WriteLine(start);
+
+            Console.WriteLine(StartCoord.X);
             Console.WriteLine(StartCoord.Y);
-            Console.WriteLine(StartCoord.Y);
+            Console.WriteLine(EndCoord.X);
+            Console.WriteLine(EndCoord.Y);
 
             currStatement.Interpret();
-            currStatement = currStatement.NextStatement;
-            Console.WriteLine("step");
+            if (currStatement.NextStatement != null)
+            {
+                currStatement = currStatement.NextStatement;
+                Console.WriteLine("step");
+            }
+            else
+            {
+                isEnd = true;
+            }   
         }
     }
 }

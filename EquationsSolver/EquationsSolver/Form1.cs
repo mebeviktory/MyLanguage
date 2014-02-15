@@ -146,6 +146,7 @@ namespace EquationsSolver
 
         private void printWatches()
         {
+            
             int countVariables = Memory.VariableValues.Count;
             for (int i = 0; i < countVariables; i++)
             {
@@ -255,16 +256,21 @@ namespace EquationsSolver
                 MessageBoxIcon icon = MessageBoxIcon.Error;
                 MessageBox.Show(text, caption, button, icon);
             }
+            else if (debug.isEnd)
+            {
+                isDebug = false;
+                RunReload();
+            }
             else
             {
                 debug.OneStep();
+                WatchesBox.Text = "";
                 printWatches();
                 int start = debug.start;
                 int length = debug.length;
+                Input.SelectionBackColor = Color.White;
                 Input.Select(start, length);
                 Input.SelectionBackColor = Color.Yellow;
-                Console.Write(start);
-                Console.WriteLine(length);
             }
         }
 

@@ -10,10 +10,12 @@ namespace EquationsSolver.Nodes
         public readonly string LabelName;
         public readonly Statement Statement;
 
-        public Label(string nameLabel, Statement currStatement)
+        public Label(string nameLabel, Statement currStatement, Coord sc, Coord ec)
         {
             Statement = currStatement;
             LabelName = nameLabel;
+            Start = sc;
+            End = ec;
         }
 
         public override Values Interpret()

@@ -9,14 +9,16 @@ namespace EquationsSolver.Nodes
     {
         public readonly string Label;
 
-        internal GoTo(string label, Coord nodeStart)
+
+        internal GoTo(string label, Coord sc, Coord ec)
         {
             if (label == null)
             {
                 throw new ArgumentNullException("Print");
             }
             Label = label;
-            Start = nodeStart;
+            Start = sc;
+            End = ec;
         }
 
         public override Values Interpret()

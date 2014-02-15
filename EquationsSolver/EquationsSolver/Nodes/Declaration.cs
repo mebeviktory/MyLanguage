@@ -13,17 +13,22 @@ namespace EquationsSolver.Nodes
         public readonly Statement Statement;
         public readonly float Length;
 
-        public Declaration(string nameVariable, Expression currExpr)
+
+        public Declaration(string nameVariable, Expression currExpr, Coord sc, Coord ec)
         {
             Expr = currExpr;
             VarName = nameVariable;
+            Start = sc;
+            End = ec;
         }
 
-        public Declaration(string nameVariable, string currStr, float length)
+        public Declaration(string nameVariable, string currStr, float length, Coord sc, Coord ec)
         {
             Str = currStr;
             VarName = nameVariable;
             Length = length;
+            Start = sc;
+            End = ec;
         }
 
         public override Values Interpret()

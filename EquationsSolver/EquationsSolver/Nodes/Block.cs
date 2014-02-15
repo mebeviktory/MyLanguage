@@ -11,11 +11,11 @@ namespace EquationsSolver.Nodes
 
         public Statement LastStatementInBlock { get; set; }
 
-        public Block(StatementList listStatement, Coord nodeStart, Coord nodeEnd)
+        public Block(StatementList listStatement, Coord sc, Coord ec)
         {
             ListOfStatements = listStatement;
-            End = nodeEnd;
-            Start = nodeStart;
+            End = sc;
+            Start = ec;
         }
 
         public override Values Interpret()

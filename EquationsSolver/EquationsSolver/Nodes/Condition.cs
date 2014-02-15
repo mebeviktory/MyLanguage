@@ -23,7 +23,7 @@ namespace EquationsSolver.Nodes
         public readonly Expression LeftNode;
         public readonly Expression RightNode;
 
-        public Condition(Expression leftNode, Expression rightNode, Comparison operation)
+        public Condition(Expression leftNode, Expression rightNode, Comparison operation, Coord sc, Coord ec)
         {
             if (leftNode == null)
             {
@@ -36,6 +36,8 @@ namespace EquationsSolver.Nodes
             LeftNode = leftNode;
             RightNode = rightNode;
             Operation = operation;
+            Start = sc;
+            End = ec;
         }
 
         public override Values Interpret()

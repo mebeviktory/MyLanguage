@@ -243,7 +243,7 @@ namespace EquationsSolver
                 {
                     offSet = i;
                     int.TryParse(stringForNumber, out number);
-                    x = x + i - 1;
+                    x = x + i;
                     return new Lexem(LexType.Number, number, String.Empty, new Nodes.Node.Coord(currX, currY), new Nodes.Node.Coord(x, y));
                 }
 
@@ -259,7 +259,7 @@ namespace EquationsSolver
                 if (nameVariable != String.Empty)
                 {
                     offSet = j;
-                    x = x + j - 1;
+                    x = x + j;
                     switch (nameVariable)
                     {
                         case "if":

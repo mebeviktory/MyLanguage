@@ -11,7 +11,8 @@ namespace EquationsSolver.Nodes
         public readonly Condition Condition;
         public readonly Block Block;
 
-        public For(Condition currCondition, Block currBlock, Assignment currAssignment, Assignment currDelta)
+
+        public For(Condition currCondition, Block currBlock, Assignment currAssignment, Assignment currDelta, Coord sc, Coord ec)
         {
             if (currCondition == null)
             {
@@ -33,6 +34,8 @@ namespace EquationsSolver.Nodes
             Block = currBlock;
             Assignment = currAssignment;
             Delta = currDelta;
+            Start = sc;
+            End = ec;
         }
 
         public override Values Interpret()

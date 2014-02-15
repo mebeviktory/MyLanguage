@@ -13,40 +13,52 @@ namespace EquationsSolver.Nodes
         public readonly string Str;
         public readonly Statement Statement;
         public readonly float Diff;
+        
 
         //float
-        public Assignment(string nameVariable, Expression currExpr)
+        public Assignment(string nameVariable, Expression currExpr, Coord sc, Coord ec)
         {
             Expr = currExpr;
             VarName = nameVariable;
+            Start = sc;
+            End = ec;
+
         }
 
         // for length
-        public Assignment(string nameVariable)
+        public Assignment(string nameVariable, Coord sc, Coord ec)
         {
             VarName = nameVariable;
+            Start = sc;
+            End = ec;
         }
 
         //array
-        public Assignment(string nameOfArray, Expression counter, Expression currExpr)
+        public Assignment(string nameOfArray, Expression counter, Expression currExpr, Coord sc, Coord ec)
         {
             VarName = nameOfArray;
             Count = counter;
             Expr = currExpr;
+            Start = sc;
+            End = ec;
         }
 
         //string
-        public Assignment(string nameVariable, string currStr)
+        public Assignment(string nameVariable, string currStr, Coord sc, Coord ec)
         {
             Str = currStr;
             VarName = nameVariable;
+            Start = sc;
+            End = ec;
         }
 
         //inc
-        public Assignment(string nameVariable, float one)
+        public Assignment(string nameVariable, float one, Coord sc, Coord ec)
         {
             Diff = one;
             VarName = nameVariable;
+            Start = sc;
+            End = ec;
         }
 
         public override Values Interpret()

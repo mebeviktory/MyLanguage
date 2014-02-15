@@ -15,25 +15,30 @@ namespace EquationsSolver.Nodes
         public readonly List<Expression> Arguments;
         public readonly MatchCollection Matches;
 
-        public Print(Expression expr,  IPrint printer)
+        public Print(Expression expr, IPrint printer, Coord sc, Coord ec)
         {
             Expr = expr;
             PrintInterface = printer;
+            Start = sc;
+            End = ec;
         }
 
-        public Print(string str, IPrint printer)
+        public Print(string str, IPrint printer, Coord sc, Coord ec)
         {
             StrForPrint = str;
             PrintInterface = printer;
+            Start = sc;
+            End = ec;
         }
 
-        public Print(string str, MatchCollection mtch, List <Nodes.Expression> arg, IPrint printer)
+        public Print(string str, MatchCollection mtch, List<Nodes.Expression> arg, IPrint printer, Coord sc, Coord ec)
         {
             StrForPrint = str;
             Matches = mtch;
             Arguments = arg;
             PrintInterface = printer;
-
+            Start = sc;
+            End = ec;
         }
 
         public override Values Interpret()

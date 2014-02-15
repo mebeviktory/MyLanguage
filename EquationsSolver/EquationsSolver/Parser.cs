@@ -141,6 +141,7 @@ namespace EquationsSolver
         {
             if (Lexer.LookAHead().LexType == Lexer.LexType.Print)
             {
+                Nodes.Node.Coord sc = new Nodes.Node.Coord(Lexer.currX, Lexer.currY);
                 Lexer.GetNextToken();
                 if (Lexer.GetNextToken().LexType != Lexer.LexType.OpenBracket)
                 {
@@ -190,19 +191,19 @@ namespace EquationsSolver
                 {
                     throw new ParserException(ParserException.ErrorType.AbsenceSemiclon, new Nodes.Node.Coord(Lexer.currX, Lexer.currY));
                 }
-
+                Nodes.Node.Coord ec = new Nodes.Node.Coord(Lexer.currX, Lexer.currY);
                 if (expr != null)
                 {
-                    return new Nodes.Print(expr, new Print());
+                    return new Nodes.Print(expr, new Print(), sc, ec);
                 }
 
                 if (stringToPrint != null)
                 {
                     if (flag)
                     {
-                        return new Nodes.Print(stringToPrint, matches, Arguments, new Print());
+                        return new Nodes.Print(stringToPrint, matches, Arguments, new Print(), sc, ec);
                     }
-                    return new Nodes.Print(stringToPrint, new Print());
+                    return new Nodes.Print(stringToPrint, new Print(), sc, ec);
                 }
 
             }
@@ -213,6 +214,7 @@ namespace EquationsSolver
         {
             if (Lexer.LookAHead().LexType == Lexer.LexType.If)
             {
+                Nodes.Node.Coord sc = new Nodes.Node.Coord(Lexer.currX, Lexer.currY);
                 Lexer.GetNextToken();
                 if (Lexer.GetNextToken().LexType != Lexer.LexType.OpenBracket)
                 {
@@ -232,31 +234,33 @@ namespace EquationsSolver
                 {
                     elseBlock = EatBlock();
                 }
-                return new Nodes.If(currCondition, ifBlock, elseBlock);
+                Nodes.Node.Coord ec = new Nodes.Node.Coord(Lexer.currX, Lexer.currY);
+                return new Nodes.If(currCondition, ifBlock, elseBlock, sc, ec);
             }
             return null;
         }
 
         private static Nodes.Condition EatCondition()
         {
+            Nodes.Node.Coord sc = new Nodes.Node.Coord(Lexer.currX, Lexer.currY);
             Nodes.Expression left = EatExpr();
             Lexer.Lexem currLexem = Lexer.GetNextToken();
             Nodes.Expression right = EatExpr();
-
+            Nodes.Node.Coord ec = new Nodes.Node.Coord(Lexer.currX, Lexer.currY);
             switch (currLexem.LexType)
             {
                 case Lexer.LexType.Less:
-                    return new Nodes.Condition(left, right, Nodes.Condition.Comparison.Less);
+                    return new Nodes.Condition(left, right, Nodes.Condition.Comparison.Less, sc, ec);
                 case Lexer.LexType.LessOrEqual:
-                    return new Nodes.Condition(left, right, Nodes.Condition.Comparison.LessOrEqual);
+                    return new Nodes.Condition(left, right, Nodes.Condition.Comparison.LessOrEqual, sc, ec);
                 case Lexer.LexType.Greater:
-                    return new Nodes.Condition(left, right, Nodes.Condition.Comparison.Greater);
+                    return new Nodes.Condition(left, right, Nodes.Condition.Comparison.Greater, sc, ec);
                 case Lexer.LexType.GreaterOrEqual:
-                    return new Nodes.Condition(left, right, Nodes.Condition.Comparison.GreaterOrEqual);
+                    return new Nodes.Condition(left, right, Nodes.Condition.Comparison.GreaterOrEqual, sc, ec);
                 case Lexer.LexType.DoubleEqual:
-                    return new Nodes.Condition(left, right, Nodes.Condition.Comparison.Equal);
+                    return new Nodes.Condition(left, right, Nodes.Condition.Comparison.Equal, sc, ec);
                 case Lexer.LexType.NotEqual:
-                    return new Nodes.Condition(left, right, Nodes.Condition.Comparison.NotEqual);
+                    return new Nodes.Condition(left, right, Nodes.Condition.Comparison.NotEqual, sc, ec);
                 default:
                     throw new ParserException(ParserException.ErrorType.IncorrectLexem, new Nodes.Node.Coord(Lexer.currX, Lexer.currY));
             }
@@ -267,6 +271,7 @@ namespace EquationsSolver
             Nodes.Block block = new Nodes.Block(new Nodes.StatementList(), new Nodes.Node.Coord(), new Nodes.Node.Coord());
             block.ListOfStatements.Statements = new List<Nodes.Statement>();
             Nodes.Statement PrevStatement = new Nodes.Statement();
+            Nodes.Node.Coord cs = new Nodes.Node.Coord(Lexer.currX, Lexer.currY);
             if (Lexer.LookAHead().LexType == Lexer.LexType.OpenBracketOfBlock)
             {
                 Lexer.GetNextToken();
@@ -293,8 +298,10 @@ namespace EquationsSolver
                 block.ListOfStatements.Statements.Add(statement);
                 PrevStatement = statement;
             }
-
+            Nodes.Node.Coord es = new Nodes.Node.Coord(Lexer.currX, Lexer.currY);
             block.LastStatementInBlock = PrevStatement;
+            block.Start = cs;
+            block.End = es;
             return block;
         }
 
@@ -302,6 +309,7 @@ namespace EquationsSolver
         {
             if (Lexer.LookAHead().LexType == Lexer.LexType.For)
             {
+                Nodes.Node.Coord sc = new Nodes.Node.Coord(Lexer.currX, Lexer.currY);
                 Lexer.GetNextToken();
                 if (Lexer.GetNextToken().LexType != Lexer.LexType.OpenBracket)
                 {
@@ -326,7 +334,8 @@ namespace EquationsSolver
                 }
 
                 Nodes.Block block = EatBlock();
-                return new Nodes.For(currCondition, block, currAssignment, delta);
+                Nodes.Node.Coord ec = new Nodes.Node.Coord(Lexer.currX, Lexer.currY);
+                return new Nodes.For(currCondition, block, currAssignment, delta, sc, ec);
             }
             return null;
         }
@@ -335,6 +344,7 @@ namespace EquationsSolver
         {
             if (Lexer.LookAHead().LexType == Lexer.LexType.While)
             {
+                Nodes.Node.Coord sc = new Nodes.Node.Coord(Lexer.currX, Lexer.currY);
                 Lexer.GetNextToken();
                 if (Lexer.GetNextToken().LexType != Lexer.LexType.OpenBracket)
                 {
@@ -346,7 +356,8 @@ namespace EquationsSolver
                     throw new ParserException(ParserException.ErrorType.AbsenceCloseBracket, new Nodes.Node.Coord(Lexer.currX, Lexer.currY));
                 }
                 Nodes.Block whileBlock = EatBlock();
-                return new Nodes.While(currCondition, whileBlock);
+                Nodes.Node.Coord ec = new Nodes.Node.Coord(Lexer.currX, Lexer.currY);
+                return new Nodes.While(currCondition, whileBlock, sc, ec);
             }
             return null;
         }
@@ -355,20 +366,21 @@ namespace EquationsSolver
         {
             if (Lexer.LookAHead().LexType == Lexer.LexType.GoTo)
             {
+                Nodes.Node.Coord sc = new Nodes.Node.Coord(Lexer.currX, Lexer.currY);
                 Lexer.GetNextToken();
                 if (Lexer.LookAHead().LexType == Lexer.LexType.Var)
                 {
                     Lexer.Lexem currLexem = Lexer.GetNextToken();
                     Lexer.GetNextToken();
-
+                    Nodes.Node.Coord ec = new Nodes.Node.Coord(Lexer.currX, Lexer.currY);
                     if (Memory.LabelsToStatement.ContainsKey(currLexem.NameVariable))
                     {
-                        return new Nodes.GoTo(currLexem.NameVariable, new Nodes.Node.Coord(Lexer.currX, Lexer.currY));
+                        return new Nodes.GoTo(currLexem.NameVariable, sc, ec);
                     }
                     else
                     {
                         UnUseLabeles.Add(currLexem.NameVariable);
-                        return new Nodes.GoTo(currLexem.NameVariable, new Nodes.Node.Coord(Lexer.currX, Lexer.currY));
+                        return new Nodes.GoTo(currLexem.NameVariable, sc, ec);
                     }
 
                 }
@@ -398,21 +410,23 @@ namespace EquationsSolver
             if ((Lexer.LookAHead().LexType == Lexer.LexType.Float) ||
                 (Lexer.LookAHead().LexType == Lexer.LexType.Str))
             {
+                Nodes.Node.Coord sc = new Nodes.Node.Coord(Lexer.currX, Lexer.currY);
                 Lexer.Lexem type = Lexer.GetNextToken();
                 if (Lexer.LookAHead().LexType == Lexer.LexType.Var)
                 {
                     Lexer.Lexem variable = Lexer.GetNextToken();
-
                     Nodes.Expression expr = new Nodes.Expression();
                     switch (type.LexType)
                     {
+
                         case Lexer.LexType.Str:
                             if (Lexer.GetNextToken().LexType == Lexer.LexType.Equal)
                             {
                                 string str = EatString();
                                 if (str != null)
                                 {
-                                    return new Nodes.Declaration(variable.NameVariable, str, str.Length);
+                                    Nodes.Node.Coord ec = new Nodes.Node.Coord(Lexer.currX, Lexer.currY);
+                                    return new Nodes.Declaration(variable.NameVariable, str, str.Length, sc, ec);
                                 }
                             }
                             else
@@ -425,7 +439,8 @@ namespace EquationsSolver
                             if (Lexer.GetNextToken().LexType == Lexer.LexType.Equal)
                             {
                                 expr = EatExpr();
-                                return new Nodes.Declaration(variable.NameVariable, expr);
+                                Nodes.Node.Coord ec = new Nodes.Node.Coord(Lexer.currX, Lexer.currY);
+                                return new Nodes.Declaration(variable.NameVariable, expr, sc, ec);
                             }
                             else
                             {
@@ -461,6 +476,7 @@ namespace EquationsSolver
         {
             if (Lexer.LookAHead().LexType == Lexer.LexType.Var)
             {
+                Nodes.Node.Coord sc = new Nodes.Node.Coord(Lexer.currX, Lexer.currY);
                 Lexer.Lexem variable = Lexer.GetNextToken();
                 if ((Lexer.LookAHead().LexType == Lexer.LexType.PlusOne) || (Lexer.LookAHead().LexType == Lexer.LexType.MinusOne)) //plus and minus 1
                 {
@@ -468,12 +484,14 @@ namespace EquationsSolver
                     if (Lexer.LookAHead().LexType == Lexer.LexType.PlusOne)
                     {
                         Lexer.GetNextToken();
-                        return new Nodes.Assignment(variable.NameVariable, 1);
+                        Nodes.Node.Coord ec = new Nodes.Node.Coord(Lexer.currX, Lexer.currY);
+                        return new Nodes.Assignment(variable.NameVariable, 1, sc, ec);
                     }
                     if (Lexer.LookAHead().LexType == Lexer.LexType.MinusOne)
                     {
                         Lexer.GetNextToken();
-                        return new Nodes.Assignment(variable.NameVariable, -1);
+                        Nodes.Node.Coord ec = new Nodes.Node.Coord(Lexer.currX, Lexer.currY);
+                        return new Nodes.Assignment(variable.NameVariable, -1, sc, ec);
                     }
                 }
                 else if (Lexer.LookAHead().LexType == Lexer.LexType.OpenSquareBracket)
@@ -483,7 +501,8 @@ namespace EquationsSolver
                     if (Lexer.GetNextToken().LexType == Lexer.LexType.CloseSquareBracket && Lexer.GetNextToken().LexType == Lexer.LexType.Equal)
                     {
                         Nodes.Expression expr = EatExpr();
-                        return new Nodes.Assignment(variable.NameVariable, count, expr);
+                        Nodes.Node.Coord ec = new Nodes.Node.Coord(Lexer.currX, Lexer.currY);
+                        return new Nodes.Assignment(variable.NameVariable, count, expr, sc, ec);
                     }
                     else
                     {
@@ -495,7 +514,8 @@ namespace EquationsSolver
                     Lexer.GetNextToken();
                     if (Lexer.GetNextToken().LexType == Lexer.LexType.Length)
                     {
-                        return new Nodes.Assignment(variable.NameVariable);
+                        Nodes.Node.Coord ec = new Nodes.Node.Coord(Lexer.currX, Lexer.currY);
+                        return new Nodes.Assignment(variable.NameVariable, sc, ec);
                     }
                     else
                     {
@@ -507,7 +527,8 @@ namespace EquationsSolver
                     if (Lexer.GetNextToken().LexType == Lexer.LexType.Equal)
                     {
                         Nodes.Expression expr = EatExpr();
-                        return new Nodes.Assignment(variable.NameVariable, expr);
+                        Nodes.Node.Coord ec = new Nodes.Node.Coord(Lexer.currX, Lexer.currY);
+                        return new Nodes.Assignment(variable.NameVariable, expr, sc, ec);
                     }
                     else
                     {

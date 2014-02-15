@@ -10,7 +10,7 @@ namespace EquationsSolver.Nodes
         public readonly Condition Condition;
         public readonly Block BlockIf, BlockElse;
 
-        public If(Condition currCondition, Block currBlockIf, Block currBlockElse)
+        public If(Condition currCondition, Block currBlockIf, Block currBlockElse, Coord sc, Coord ec)
         {
             if (currCondition == null)
             {
@@ -23,6 +23,8 @@ namespace EquationsSolver.Nodes
             Condition = currCondition;
             BlockIf = currBlockIf;
             BlockElse = currBlockElse;
+            Start = sc;
+            End = ec;
         }
 
         public override Values Interpret()

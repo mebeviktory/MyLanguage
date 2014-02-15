@@ -10,7 +10,7 @@ namespace EquationsSolver.Nodes
         public readonly Condition Condition;
         public readonly Block Block;
 
-        public While(Condition currCondition, Block currBlock)
+        public While(Condition currCondition, Block currBlock, Coord sc, Coord ec)
         {
             if (currCondition == null)
             {
@@ -22,6 +22,8 @@ namespace EquationsSolver.Nodes
             }
             Condition = currCondition;
             Block = currBlock;
+            Start = sc;
+            End = ec;
         }
 
         public override Values Interpret()
