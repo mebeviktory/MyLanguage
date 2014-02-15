@@ -1,4 +1,4 @@
-﻿namespace EquationsSolver
+﻿namespace GUI
 {
  partial class Form1
     {
@@ -41,8 +41,6 @@
             this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.runToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.debugToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.stopDebug = new System.Windows.Forms.ToolStripMenuItem();
-            this.step = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -51,7 +49,6 @@
             this.Watches = new System.Windows.Forms.TabPage();
             this.WatchesBox = new System.Windows.Forms.TextBox();
             this.Input = new System.Windows.Forms.RichTextBox();
-            this.recButton = new System.Windows.Forms.Button();
             tabPage1 = new System.Windows.Forms.TabPage();
             tabPage1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -83,6 +80,7 @@
             this.ResultBox.Name = "ResultBox";
             this.ResultBox.Size = new System.Drawing.Size(727, 115);
             this.ResultBox.TabIndex = 0;
+            this.ResultBox.TextChanged += new System.EventHandler(this.ResultBox_TextChanged);
             // 
             // menuStrip1
             // 
@@ -95,6 +93,7 @@
             this.menuStrip1.Size = new System.Drawing.Size(731, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // fileToolStripMenuItem
             // 
@@ -108,6 +107,7 @@
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
+            this.fileToolStripMenuItem.Click += new System.EventHandler(this.fileToolStripMenuItem_Click);
             // 
             // newToolStripMenuItem
             // 
@@ -151,45 +151,26 @@
             // 
             // debugToolStripMenuItem
             // 
-            this.debugToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.debugToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.runToolStripMenuItem2,
-            this.debugToolStripMenuItem1,
-            this.stopDebug,
-            this.step});
+            this.debugToolStripMenuItem1});
             this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
             this.debugToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.debugToolStripMenuItem.Text = "Deb&ug";
             // 
             // runToolStripMenuItem2
             // 
-            this.runToolStripMenuItem2.BackColor = System.Drawing.Color.Lavender;
             this.runToolStripMenuItem2.Name = "runToolStripMenuItem2";
-            this.runToolStripMenuItem2.Size = new System.Drawing.Size(136, 22);
+            this.runToolStripMenuItem2.Size = new System.Drawing.Size(109, 22);
             this.runToolStripMenuItem2.Text = "R&un";
             this.runToolStripMenuItem2.Click += new System.EventHandler(this.runToolStripMenuItem2_Click);
             // 
             // debugToolStripMenuItem1
             // 
-            this.debugToolStripMenuItem1.BackColor = System.Drawing.Color.Lavender;
             this.debugToolStripMenuItem1.Name = "debugToolStripMenuItem1";
-            this.debugToolStripMenuItem1.Size = new System.Drawing.Size(136, 22);
+            this.debugToolStripMenuItem1.Size = new System.Drawing.Size(109, 22);
             this.debugToolStripMenuItem1.Text = "Deb&ug";
             this.debugToolStripMenuItem1.Click += new System.EventHandler(this.debugToolStripMenuItem1_Click);
-            // 
-            // stopDebug
-            // 
-            this.stopDebug.Name = "stopDebug";
-            this.stopDebug.Size = new System.Drawing.Size(136, 22);
-            this.stopDebug.Text = "Stop Debug";
-            this.stopDebug.Click += new System.EventHandler(this.stopDebug_Click);
-            // 
-            // step
-            // 
-            this.step.Name = "step";
-            this.step.Size = new System.Drawing.Size(136, 22);
-            this.step.Text = "Step";
-            this.step.Click += new System.EventHandler(this.step_Click);
             // 
             // statusStrip1
             // 
@@ -236,6 +217,7 @@
             this.ErrorsBox.Name = "ErrorsBox";
             this.ErrorsBox.Size = new System.Drawing.Size(723, 115);
             this.ErrorsBox.TabIndex = 0;
+            this.ErrorsBox.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // Watches
             // 
@@ -259,6 +241,7 @@
             this.WatchesBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.WatchesBox.Size = new System.Drawing.Size(720, 115);
             this.WatchesBox.TabIndex = 0;
+            this.WatchesBox.TextChanged += new System.EventHandler(this.WatchesBox_TextChanged);
             // 
             // Input
             // 
@@ -267,16 +250,7 @@
             this.Input.Size = new System.Drawing.Size(723, 256);
             this.Input.TabIndex = 4;
             this.Input.Text = "";
-            // 
-            // recButton
-            // 
-            this.recButton.Location = new System.Drawing.Point(656, 1);
-            this.recButton.Name = "recButton";
-            this.recButton.Size = new System.Drawing.Size(75, 23);
-            this.recButton.TabIndex = 5;
-            this.recButton.Text = "recovery";
-            this.recButton.UseVisualStyleBackColor = true;
-            this.recButton.Click += new System.EventHandler(this.button1_Click);
+            //this.Input.TextChanged += new System.EventHandler(this.Input_TextChanged);
             // 
             // Form1
             // 
@@ -284,7 +258,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(731, 452);
-            this.Controls.Add(this.recButton);
             this.Controls.Add(this.Input);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip1);
@@ -294,6 +267,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Program - My Visual Studio";
+            this.Load += new System.EventHandler(this.Form1_Load_1);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -331,8 +305,5 @@
         private System.Windows.Forms.ToolStripMenuItem debugToolStripMenuItem1;
         private System.Windows.Forms.TabPage Watches;
         private System.Windows.Forms.TextBox WatchesBox;
-        private System.Windows.Forms.ToolStripMenuItem stopDebug;
-        private System.Windows.Forms.ToolStripMenuItem step;
-        private System.Windows.Forms.Button recButton;
     }
 }

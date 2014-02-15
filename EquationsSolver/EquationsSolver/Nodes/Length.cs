@@ -15,15 +15,14 @@ namespace EquationsSolver.Nodes
         }
 
         public override Values Interpret()
-        {
-           
-                if (!Memory.VariableValues.ContainsKey(VarName))
-                {
-                    throw new InterpretException(InterpretException.TypeException.NonInitializedVar);
-                }
-                float length = Memory.VariableValues[VarName].ValueOfString.Length;
-                return new Values(null, length, Variable.VariableType.Float);
-        }
-            
+        {      
+            if (!Memory.VariableValues.ContainsKey(VarName))
+            {
+                throw new InterpretException(InterpretException.TypeException.NonInitializedVar);
+            }
+            float length = Memory.VariableValues[VarName].ValueOfString.Length;
+            Variable.VariableType ftype = Variable.VariableType.Float;
+            return new Values(null, length, ftype);
+        }         
     }
 }

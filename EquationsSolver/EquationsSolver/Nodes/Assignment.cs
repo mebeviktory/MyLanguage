@@ -12,58 +12,62 @@ namespace EquationsSolver.Nodes
         public readonly Expression Count;
         public readonly string Str;
         public readonly Statement Statement;
-        public readonly float diff;
-        Parser.Lexer.LexType VarType;
+        public readonly float Diff;
 
+        //float
         public Assignment(string nameVariable, Expression currExpr)
         {
             Expr = currExpr;
             VarName = nameVariable;
         }
 
+        // for length
         public Assignment(string nameVariable)
         {
             VarName = nameVariable;
         }
 
+        //array
         public Assignment(string nameOfArray, Expression counter, Expression currExpr)
         {
             VarName = nameOfArray;
             Count = counter;
             Expr = currExpr;
-
         }
 
+        //string
         public Assignment(string nameVariable, string currStr)
         {
             Str = currStr;
             VarName = nameVariable;
-            VarType = Parser.Lexer.LexType.Str;
-
         }
 
+        //inc
         public Assignment(string nameVariable, float one)
         {
-            diff = one;
+            Diff = one;
             VarName = nameVariable;
-        }
-
-        public Assignment(string nameLabel, Statement currStatement)
-        {
-            Statement = currStatement;
-            VarName = nameLabel;
         }
 
         public override Values Interpret()
         {
-            if (diff != 0.0)
+
+            Variable.VariableType sType = Variable.VariableType.Float;
+            Variable.VariableType fType = Variable.VariableType.Float;
+
+            //i++
+            if (Diff != 0.0)
             {
+                
                 if (!Memory.VariableValues.ContainsKey(VarName))
                 {
                     throw new InterpretException(InterpretException.TypeException.NonInitializedVar);
                 }
-                Memory.VariableValues[VarName] = new Values(null, Memory.VariableValues[VarName].ValueOfFloat + diff, Variable.VariableType.Float);
+                float valCurrVariable = Memory.VariableValues[VarName].ValueOfFloat;
+                Memory.VariableValues[VarName] = new Values(null, valCurrVariable + Diff, fType);
             }
+
+            // array assignment
             else if (Count != null)
             {
                 Values count = Count.Interpret();
@@ -78,33 +82,26 @@ namespace EquationsSolver.Nodes
                     Memory.VariableValues[name] = expr;
                 }
             }
-            /*else if (Statement != null)
-            {
-                if (!Memory.VariableValues.ContainsKey(VarName))
-                {
-                    Memory.VariableValues.Add(VarName,);
-                }
-                Memory.LabelsToStatement[VarName] = Statement;
-                Statement.NextStatement = this.NextStatement;
-            }*/
+
+            //string assignment
             else if (Str != null)
             {
                 if (!Memory.VariableValues.ContainsKey(VarName))
                 {
                     throw new InterpretException(InterpretException.TypeException.NonInitializedVar);
                 }
-                Memory.VariableValues[VarName] = new Values(Str, 0, Variable.VariableType.String);
+                Memory.VariableValues[VarName] = new Values(Str, 0, sType);
             }
+
+            // float assignment
             else if (Expr != null)
             {
                 if (!Memory.VariableValues.ContainsKey(VarName))
                 {
                     throw new InterpretException(InterpretException.TypeException.NonInitializedVar);
                 }
-                Memory.VariableValues[VarName] = new Values(null, Expr.Interpret().ValueOfFloat, Variable.VariableType.Float);
+                Memory.VariableValues[VarName] = new Values(null, Expr.Interpret().ValueOfFloat, fType);
             }
-            
-
             return new Values();
 
         }

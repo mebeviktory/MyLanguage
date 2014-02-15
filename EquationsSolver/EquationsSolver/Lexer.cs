@@ -90,6 +90,7 @@ namespace EquationsSolver
                 Length
             }
 
+            //for exp 
             private enum States
             {
                 IntegerPart, Point, Exponent, FractionalPart, NumberAfterExponent

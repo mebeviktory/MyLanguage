@@ -30,20 +30,22 @@ namespace EquationsSolver.Nodes
         {
             if (Memory.VariableValues.ContainsKey(VarName))
             {
-                throw new InterpretException(InterpretException.TypeException.Error);//change exception;
+                throw new InterpretException(InterpretException.TypeException.DoubleDeclaration);
             }
             if (Str != null)
             {
+                Nodes.Variable.VariableType sType = Nodes.Variable.VariableType.String;
                 for (int i = 0; i <= Str.Length - 1; i++)
                 {
                     string name = VarName+ '[' + i.ToString() + ']';
-                    Memory.VariableValues[name] = new Nodes.Node.Values(Str[i].ToString(), Str[i].GetHashCode(), Nodes.Variable.VariableType.String);
+                    Memory.VariableValues[name] = new Nodes.Node.Values(Str[i].ToString(), Str[i].GetHashCode(), sType);
                 }
-                Memory.VariableValues[VarName] = new Values(Str,0, Variable.VariableType.String);
+                Memory.VariableValues[VarName] = new Values(Str,0, sType);
             }
             else
             {
-                Memory.VariableValues[VarName] = new Values(null, Expr.Interpret().ValueOfFloat, Variable.VariableType.Float);
+                Nodes.Variable.VariableType fType = Nodes.Variable.VariableType.Float;
+                Memory.VariableValues[VarName] = new Values(null, Expr.Interpret().ValueOfFloat, fType);
             }
             return new Values();
         }

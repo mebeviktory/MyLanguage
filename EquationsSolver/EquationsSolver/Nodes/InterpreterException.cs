@@ -12,7 +12,8 @@ namespace EquationsSolver
         {
             DivisionByZero,
             NonInitializedVar,
-            Error
+            Error,
+            DoubleDeclaration
         }
 
         public InterpretException(TypeException exception)

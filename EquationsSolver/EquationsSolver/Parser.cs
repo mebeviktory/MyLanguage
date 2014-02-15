@@ -20,7 +20,6 @@ namespace EquationsSolver
             }
         }
 
-
         private static List<string> UnUseLabeles { get; set; }
         private static bool Flag = true;
         public static List<Error> Errors { get; private set; }
@@ -42,7 +41,7 @@ namespace EquationsSolver
                 throw new ArgumentNullException(expression);
             }
 
-            Memory.VariableValues = new Dictionary<string, Nodes.Node.Values >();
+            Memory.VariableValues = new Dictionary<string, Nodes.Node.Values>();
             Lexer lexer = new Lexer(expression);
             Errors = new List<Error>();
             UnUseLabeles = new List<string>();
@@ -50,13 +49,13 @@ namespace EquationsSolver
             Memory.LabelsToStatement = new Dictionary<string, Nodes.Statement>();
             ListExpr = EatStatementList();
             Nodes.Program program = new Nodes.Program(ListExpr);
-            /*foreach (string name in UnUseLabeles)
+            foreach (string name in UnUseLabeles)
             {
                 if (!Memory.LabelsToStatement.ContainsKey(name))
                 {
-                    throw new ParserException(ParserException.ErrorType.ErrorWithStatement, Lexer.currX, Lexer.currY);
+                    throw new ParserException(ParserException.ErrorType.IncorrectStatement, new Nodes.Node.Coord(Lexer.currX, Lexer.currY));
                 }
-            }*/
+            }
             if (Flag)
             {
                 return program;
@@ -136,7 +135,6 @@ namespace EquationsSolver
                 return statement;
             }
             throw new ParserException(ParserException.ErrorType.IncorrectStatement, new Nodes.Node.Coord(Lexer.currX, Lexer.currY));
-            //return null;
         }
 
         private static Nodes.Print EatPrint()
@@ -376,7 +374,7 @@ namespace EquationsSolver
                 }
                 else
                 {
-                    throw new ParserException(ParserException.ErrorType.ErrorWithLabel, new Nodes.Node.Coord (Lexer.currX, Lexer.currY));
+                    throw new ParserException(ParserException.ErrorType.ErrorWithLabel, new Nodes.Node.Coord(Lexer.currX, Lexer.currY));
                 }
             }
             return null;
@@ -464,21 +462,7 @@ namespace EquationsSolver
             if (Lexer.LookAHead().LexType == Lexer.LexType.Var)
             {
                 Lexer.Lexem variable = Lexer.GetNextToken();
-                /*if (Lexer.LookAHead().LexType == Lexer.LexType.Colon)
-                {
-                    Lexer.GetNextToken();
-                    Nodes.Statement currStatement = EatStatement();
-
-
-                    if (Memory.LabelsToStatement.ContainsKey(variable.NameVariable))
-                    {
-                        throw new ParserException(ParserException.ErrorType.SecondInitialization, new Nodes.Node.Coord(Lexer.currX, Lexer.currY));
-                    }
-
-                    Memory.LabelsToStatement[variable.NameVariable] = currStatement;
-                    return new Nodes.Assignment(variable.NameVariable, currStatement);
-                }
-                else*/ if ((Lexer.LookAHead().LexType == Lexer.LexType.PlusOne) || (Lexer.LookAHead().LexType == Lexer.LexType.MinusOne)) //plus and minus 1
+                if ((Lexer.LookAHead().LexType == Lexer.LexType.PlusOne) || (Lexer.LookAHead().LexType == Lexer.LexType.MinusOne)) //plus and minus 1
                 {
 
                     if (Lexer.LookAHead().LexType == Lexer.LexType.PlusOne)

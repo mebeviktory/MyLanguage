@@ -38,27 +38,46 @@ namespace EquationsSolver.Nodes
 
         public override Values Interpret()
         {
+            Variable.VariableType ftype = Variable.VariableType.Float;
             switch (Operation)
             {
+                
                 case BinaryOperationType.Plus:
-                    return new Values(null, LeftNode.Interpret().ValueOfFloat + RightNode.Interpret().ValueOfFloat, Variable.VariableType.Float);
-
+                {
+                    float val = LeftNode.Interpret().ValueOfFloat + RightNode.Interpret().ValueOfFloat;
+                    return new Values(null, val, ftype);
+                }
                 case BinaryOperationType.Minus:
-                    return new Values(null, LeftNode.Interpret().ValueOfFloat - RightNode.Interpret().ValueOfFloat, Variable.VariableType.Float);
+                {
+                    float val = LeftNode.Interpret().ValueOfFloat - RightNode.Interpret().ValueOfFloat;
+                    return new Values(null, val, ftype);
+                }
 
                 case BinaryOperationType.Multiply:
-                    return new Values(null, LeftNode.Interpret().ValueOfFloat * RightNode.Interpret().ValueOfFloat, Variable.VariableType.Float);
+                {
+                    float val = LeftNode.Interpret().ValueOfFloat * RightNode.Interpret().ValueOfFloat;
+                    return new Values(null, val, ftype);
+                }
 
                 case BinaryOperationType.Division:
+                {
                     float rightNode = RightNode.Interpret().ValueOfFloat;
                     if (rightNode == 0)
                     {
                         throw new InterpretException(InterpretException.TypeException.DivisionByZero);
                     }
-                    return new Values(null, LeftNode.Interpret().ValueOfFloat / RightNode.Interpret().ValueOfFloat, Variable.VariableType.Float);
+                    else
+                    {
+                        float val = LeftNode.Interpret().ValueOfFloat / rightNode;
+                        return new Values(null, val, ftype);
+                    }
+                }
 
                 case BinaryOperationType.Degree:
-                    return new Values(null, (float)Math.Pow(LeftNode.Interpret().ValueOfFloat, RightNode.Interpret().ValueOfFloat), Variable.VariableType.Float);
+                {
+                    float val = (float)Math.Pow(LeftNode.Interpret().ValueOfFloat,RightNode.Interpret().ValueOfFloat);
+                    return new Values(null, val, ftype);
+                }
 
                 default:
                     throw new InterpretException(InterpretException.TypeException.Error) ;

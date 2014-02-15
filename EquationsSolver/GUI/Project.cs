@@ -5,19 +5,18 @@ using System.Text;
 using System.IO;
 using System.Windows.Forms;
 
-namespace EquationsSolver
+namespace GUI
 {
-    internal class Project
+    static class Program
     {
-        public static Form1 form = new Form1();
-
         public static string savePath = "";
 
         [STAThread]
-        public static void Main()
+        static void Main()
         {
             Application.EnableVisualStyles();
-            Application.Run(form);
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
         }
     }
 }

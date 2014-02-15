@@ -45,12 +45,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Debugger.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Guardian.cs" />
+    <Compile Include="Keeper.cs" />
     <Compile Include="Nodes\Declaration.cs" />
     <Compile Include="Nodes\InterpreterException.cs" />
     <Compile Include="IPrint.cs" />

@@ -1,10 +1,8 @@
-C:\Users\Victoriq\Desktop\EquationsSolver\EquationsSolver\GUI\obj\x86\Debug\GUI.Properties.Resources.resources
-C:\Users\Victoriq\Desktop\EquationsSolver\EquationsSolver\GUI\obj\x86\Debug\GUI.csproj.GenerateResource.Cache
 C:\Users\Victoriq\Desktop\EquationsSolver\EquationsSolver\GUI\bin\Debug\GUI.exe
 C:\Users\Victoriq\Desktop\EquationsSolver\EquationsSolver\GUI\bin\Debug\GUI.pdb
-C:\Users\Victoriq\Desktop\EquationsSolver\EquationsSolver\GUI\bin\Debug\EquationsSolver.exe
-C:\Users\Victoriq\Desktop\EquationsSolver\EquationsSolver\GUI\bin\Debug\EquationsSolver.pdb
-C:\Users\Victoriq\Desktop\EquationsSolver\EquationsSolver\GUI\obj\x86\Debug\GUI.csprojResolveAssemblyReference.cache
+C:\Users\Victoriq\Desktop\EquationsSolver\EquationsSolver\GUI\obj\x86\Debug\GUI.Properties.Resources.resources
+C:\Users\Victoriq\Desktop\EquationsSolver\EquationsSolver\GUI\obj\x86\Debug\GUI.csproj.GenerateResource.Cache
 C:\Users\Victoriq\Desktop\EquationsSolver\EquationsSolver\GUI\obj\x86\Debug\GUI.exe
 C:\Users\Victoriq\Desktop\EquationsSolver\EquationsSolver\GUI\obj\x86\Debug\GUI.pdb
-C:\Users\Victoriq\Desktop\EquationsSolver\EquationsSolver\GUI\obj\x86\Debug\EquationsSolver.Form1.resources
+C:\Users\Victoriq\Desktop\EquationsSolver\EquationsSolver\GUI\obj\x86\Debug\GUI.csprojResolveAssemblyReference.cache
+C:\Users\Victoriq\Desktop\EquationsSolver\EquationsSolver\GUI\obj\x86\Debug\GUI.Form1.resources
