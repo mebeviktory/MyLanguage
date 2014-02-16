@@ -13,7 +13,7 @@ namespace EquationsSolver
     partial class Form1 : Form
     {
         public Debugger debug = null;
-        public Guardian guard = new Guardian();
+        public Caretaker caret = new Caretaker();
         public bool isDebug = false; 
         
         public Form1()
@@ -281,18 +281,19 @@ namespace EquationsSolver
             string err = ErrorsBox.Text;
             string wat = WatchesBox.Text;
 
-            Keeper keeper = new Keeper(inp, outp, err, wat);
-            guard.ChangeKeeper(keeper);
+            Memento mem = new Memento(inp, outp, err, wat);
+            caret.ChangeMemento(mem);
+
+            caret.Save();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            Keeper keeper = guard.currKeeper;
-            Input.Text = keeper.Input;
-            ResultBox.Text = keeper.Output;
-            ErrorsBox.Text = keeper.Errors;
-            WatchesBox.Text = keeper.Watches;
+            Memento mem = caret.Load();
+            Input.Text = mem.Input;
+            ResultBox.Text = mem.Output;
+            ErrorsBox.Text = mem.Errors;
+            WatchesBox.Text = mem.Watches;
         }
-
     }
 }

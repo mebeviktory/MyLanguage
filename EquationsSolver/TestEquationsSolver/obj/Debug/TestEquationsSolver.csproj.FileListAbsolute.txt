@@ -22,3 +22,11 @@ C:\Users\Victoriq\Desktop\EquationsSolver\EquationsSolver\TestEquationsSolver\bi
 C:\Users\Victoriq\Desktop\EquationsSolver\EquationsSolver\TestEquationsSolver\obj\Debug\TestEquationsSolver.csprojResolveAssemblyReference.cache
 C:\Users\Victoriq\Desktop\EquationsSolver\EquationsSolver\TestEquationsSolver\obj\Debug\TestEquationsSolver.dll
 C:\Users\Victoriq\Desktop\EquationsSolver\EquationsSolver\TestEquationsSolver\obj\Debug\TestEquationsSolver.pdb
+C:\Users\Victoriq\Documents\GitHub\MyLanguage\EquationsSolver\TestEquationsSolver\bin\Debug\TestEquationsSolver.dll
+C:\Users\Victoriq\Documents\GitHub\MyLanguage\EquationsSolver\TestEquationsSolver\bin\Debug\TestEquationsSolver.pdb
+C:\Users\Victoriq\Documents\GitHub\MyLanguage\EquationsSolver\TestEquationsSolver\bin\Debug\EquationsSolver.exe
+C:\Users\Victoriq\Documents\GitHub\MyLanguage\EquationsSolver\TestEquationsSolver\bin\Debug\EquationsSolver.pdb
+C:\Users\Victoriq\Documents\GitHub\MyLanguage\EquationsSolver\TestEquationsSolver\bin\Debug\nunit.framework.xml
+C:\Users\Victoriq\Documents\GitHub\MyLanguage\EquationsSolver\TestEquationsSolver\obj\Debug\TestEquationsSolver.csprojResolveAssemblyReference.cache
+C:\Users\Victoriq\Documents\GitHub\MyLanguage\EquationsSolver\TestEquationsSolver\obj\Debug\TestEquationsSolver.dll
+C:\Users\Victoriq\Documents\GitHub\MyLanguage\EquationsSolver\TestEquationsSolver\obj\Debug\TestEquationsSolver.pdb

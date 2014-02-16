@@ -52,8 +52,8 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Guardian.cs" />
-    <Compile Include="Keeper.cs" />
+    <Compile Include="Caretaker.cs" />
+    <Compile Include="Memento.cs" />
     <Compile Include="Nodes\Declaration.cs" />
     <Compile Include="Nodes\InterpreterException.cs" />
     <Compile Include="IPrint.cs" />

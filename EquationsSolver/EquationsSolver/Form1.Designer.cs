@@ -51,7 +51,6 @@
             this.Watches = new System.Windows.Forms.TabPage();
             this.WatchesBox = new System.Windows.Forms.TextBox();
             this.Input = new System.Windows.Forms.RichTextBox();
-            this.recButton = new System.Windows.Forms.Button();
             tabPage1 = new System.Windows.Forms.TabPage();
             tabPage1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -268,23 +267,12 @@
             this.Input.TabIndex = 4;
             this.Input.Text = "";
             // 
-            // recButton
-            // 
-            this.recButton.Location = new System.Drawing.Point(656, 1);
-            this.recButton.Name = "recButton";
-            this.recButton.Size = new System.Drawing.Size(75, 23);
-            this.recButton.TabIndex = 5;
-            this.recButton.Text = "recovery";
-            this.recButton.UseVisualStyleBackColor = true;
-            this.recButton.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(731, 452);
-            this.Controls.Add(this.recButton);
             this.Controls.Add(this.Input);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip1);
@@ -294,6 +282,8 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Program - My Visual Studio";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Load += new System.EventHandler(this.Form1_Load);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -333,6 +323,5 @@
         private System.Windows.Forms.TextBox WatchesBox;
         private System.Windows.Forms.ToolStripMenuItem stopDebug;
         private System.Windows.Forms.ToolStripMenuItem step;
-        private System.Windows.Forms.Button recButton;
     }
 }

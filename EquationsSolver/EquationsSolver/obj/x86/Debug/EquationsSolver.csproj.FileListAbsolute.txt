@@ -26,3 +26,10 @@ C:\Users\Victoriq\Desktop\EquationsSolver\EquationsSolver\EquationsSolver\bin\De
 C:\Users\Victoriq\Desktop\EquationsSolver\EquationsSolver\EquationsSolver\obj\x86\Debug\EquationsSolver.csprojResolveAssemblyReference.cache
 C:\Users\Victoriq\Desktop\EquationsSolver\EquationsSolver\EquationsSolver\obj\x86\Debug\EquationsSolver.Form1.resources
 C:\Users\Victoriq\Desktop\EquationsSolver\EquationsSolver\EquationsSolver\obj\x86\Debug\EquationsSolver.csproj.GenerateResource.Cache
+C:\Users\Victoriq\Documents\GitHub\MyLanguage\EquationsSolver\EquationsSolver\obj\x86\Debug\EquationsSolver.exe
+C:\Users\Victoriq\Documents\GitHub\MyLanguage\EquationsSolver\EquationsSolver\obj\x86\Debug\EquationsSolver.pdb
+C:\Users\Victoriq\Documents\GitHub\MyLanguage\EquationsSolver\EquationsSolver\bin\Debug\EquationsSolver.exe
+C:\Users\Victoriq\Documents\GitHub\MyLanguage\EquationsSolver\EquationsSolver\bin\Debug\EquationsSolver.pdb
+C:\Users\Victoriq\Documents\GitHub\MyLanguage\EquationsSolver\EquationsSolver\obj\x86\Debug\EquationsSolver.csprojResolveAssemblyReference.cache
+C:\Users\Victoriq\Documents\GitHub\MyLanguage\EquationsSolver\EquationsSolver\obj\x86\Debug\EquationsSolver.Form1.resources
+C:\Users\Victoriq\Documents\GitHub\MyLanguage\EquationsSolver\EquationsSolver\obj\x86\Debug\EquationsSolver.csproj.GenerateResource.Cache
