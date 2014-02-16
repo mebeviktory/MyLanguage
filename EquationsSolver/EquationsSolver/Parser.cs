@@ -68,6 +68,8 @@ namespace EquationsSolver
             Nodes.StatementList ListExpr = new Nodes.StatementList();
             ListExpr.Statements = new List<Nodes.Statement>();
             Nodes.Statement PrevStatement = new Nodes.Statement();
+            //Console.WriteLine(Lexer.currPos);
+            Lexer.currPos = 0;
             while (Lexer.LookAHead().LexType != Lexer.LexType.EOF && Lexer.LookAHead().LexType != Lexer.LexType.CloseBracketOfBlock)
             {
                 try
