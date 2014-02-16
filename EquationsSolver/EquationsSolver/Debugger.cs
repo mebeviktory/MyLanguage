@@ -35,7 +35,14 @@ namespace EquationsSolver
             Console.WriteLine(EndCoord.X);
             Console.WriteLine(EndCoord.Y);
 
-            currStatement.Interpret();
+            if (!Memory.Breakpoints.Contains(currStatement.Start.Y))
+            {
+                currStatement.Interpret();
+            }
+            else
+            {
+                isEnd = true;
+            }
             if (currStatement.NextStatement != null)
             {
                 currStatement = currStatement.NextStatement;
@@ -44,7 +51,7 @@ namespace EquationsSolver
             else
             {
                 isEnd = true;
-            }   
+            }
         }
     }
 }

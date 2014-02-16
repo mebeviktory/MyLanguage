@@ -174,9 +174,23 @@ namespace EquationsSolver
             ErrorsBox.Text = "";
             ResultBox.Text = "";
             WatchesBox.Text = "";
-            Memory.Breakpoints = new List<int>();
+            //Memory.Breakpoints = new List<int>();
             Input.SelectAll();
             Input.SelectionBackColor = Color.White;
+            foreach (int b in Memory.Breakpoints)
+            {
+                int curPos = b;
+                //Console.WriteLine(curPos);
+                Memory.Breakpoints.Add(curPos);
+                int sum = 0;
+                for (int i = 0; i < curPos; i++)
+                {
+                    sum = sum + Input.Lines[i].Length + 1;
+                }
+                Input.Select(sum, 1);
+                Input.SelectionBackColor = Color.Red;
+                break;
+            }
             Input.Select(0, 0);
         }
 
@@ -247,10 +261,18 @@ namespace EquationsSolver
                 debug.OneStep();
                 WatchesBox.Text = "";
                 printWatches();
-                int start = debug.start;
-                int length = debug.length;
+                //int start = debug.start;
+                //int length = debug.length;
+                int currStr = debug.StartCoord.Y;
+
+                int sum = 0;
+                for (int i = 0; i < currStr; i++)
+                {
+                    sum = sum + Input.Lines[i].Length + 1;
+                }
                 Input.SelectionBackColor = Color.White;
-                Input.Select(start, length);
+                Input.Select(sum, Input.Lines[currStr].Length);
+
                 Input.SelectionBackColor = Color.Yellow;
             }
         }
