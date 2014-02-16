@@ -14,7 +14,7 @@ namespace EquationsSolver
     {
         public Debugger debug = null;
         public Caretaker caret = new Caretaker();
-        public bool isDebug = false; 
+        public bool isDebug = false;
         
         public Form1()
         {
@@ -47,6 +47,7 @@ namespace EquationsSolver
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            RunReload();
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.InitialDirectory = "c:\\user";
             openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
@@ -168,35 +169,15 @@ namespace EquationsSolver
             }
         }
 
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case (Keys.F10):
-                {
-                    /*int endCoordX = debug.EndcoordOfStatement.X;
-                    int startCoord = debug.StartcoordOfStatement;
-
-
-                    ResultBox.Select(startCoordX, lengthOfStatement)*/
-                    debug.OneStep();
-                    break;
-                }
-                case (Keys.F5):
-                {
-                    RunReload();
-                    isDebug = false;
-                    break;
-                }
-            }
-        }
-
         private void RunReload()
         {
             ErrorsBox.Text = "";
             ResultBox.Text = "";
             WatchesBox.Text = "";
-            ResultBox.BackColor = Color.White;
+            Memory.Breakpoints = new List<int>();
+            Input.SelectAll();
+            Input.SelectionBackColor = Color.White;
+            Input.Select(0, 0);
         }
 
         private void ParserErrorWrite()
@@ -246,7 +227,7 @@ namespace EquationsSolver
             isDebug = false;
         }
 
-        private void step_Click(object sender, EventArgs e)
+        private void stepDebug()
         {
             if (!isDebug)
             {
@@ -274,6 +255,11 @@ namespace EquationsSolver
             }
         }
 
+        private void step_Click(object sender, EventArgs e)
+        {
+            stepDebug();
+        }
+
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             string inp = Input.Text;
@@ -294,6 +280,40 @@ namespace EquationsSolver
             ResultBox.Text = mem.Output;
             ErrorsBox.Text = mem.Errors;
             WatchesBox.Text = mem.Watches;
+            Memory.Breakpoints = new List<int>();
+        }
+
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case (Keys.F10):
+                    {
+                        stepDebug();
+                        break;
+                    }
+                case (Keys.F5):
+                    {
+                        RunReload();
+                        isDebug = false;
+                        break;
+                    }
+                case (Keys.F1):
+                    {
+                        int curPos = Input.GetLineFromCharIndex(Input.SelectionStart);
+                        //Console.WriteLine(curPos);
+                        Memory.Breakpoints.Add(curPos);
+                        int sum = 0;
+                        for (int i = 0; i < curPos; i++)
+                        {
+                            sum = sum + Input.Lines[i].Length + 1; 
+                        }
+                        Input.Select(sum, 1);
+                        Input.SelectionBackColor = Color.Red;
+                        break;
+                    }
+            }
         }
     }
 }

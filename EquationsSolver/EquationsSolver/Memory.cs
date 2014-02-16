@@ -8,6 +8,13 @@ namespace EquationsSolver
 
     internal class Memory
     {
+
+        public static List<int> Breakpoints
+        {
+            get;
+            set;
+        }
+
         public static Dictionary<string, Nodes.Node.Values> VariableValues
         {
             get;

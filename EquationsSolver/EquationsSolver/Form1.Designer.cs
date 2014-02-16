@@ -261,11 +261,13 @@
             // 
             // Input
             // 
+            this.Input.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Input.Location = new System.Drawing.Point(4, 27);
             this.Input.Name = "Input";
             this.Input.Size = new System.Drawing.Size(723, 256);
             this.Input.TabIndex = 4;
             this.Input.Text = "";
+            
             // 
             // Form1
             // 
@@ -278,10 +280,12 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Program - My Visual Studio";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             tabPage1.ResumeLayout(false);
